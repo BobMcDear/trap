@@ -15,7 +15,9 @@ With trap, the goal is that the drawbacks of both approaches can be redressed an
 
 ## Usage
 
-The ```TRANSFORMER``` namespace in [```transformer.apl```](https://github.com/BobMcDear/trap/blob/main/transformer.apl) exposes four main dfns:
+Dyalog APL is the dialect of the language used by trap, so the first step is to [install Dyalog](https://www.dyalog.com/download-zone.htm). Dyalog is free for personal uses, but a license is obligatory for commercial purposes. To compile trap, Co-dfns v5 is required; an installation guide can be found [here](https://github.com/Co-dfns/Co-dfns/blob/master/docs/INSTALL.md).
+
+The ```TRANSFORMER``` namespace in [```transformer.apls```](https://github.com/BobMcDear/trap/blob/main/transformer.apls) exposes four main dfns:
 
 * ```TRANSFORMER.FWD```: Performs a forward pass over the input data when called monadically, calculating output logits. Otherwise, the left argument is interpreted as target classes, and the cross-entropy loss is returned. Activation tensors are kept track of for backpropagation.
 * ```TRANSFORMER.BWD```: Computes the gradients of the network's parameters. Technically, this is a non-niladic function, but its arguments are not used.
