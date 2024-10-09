@@ -17,7 +17,7 @@ With trap, the goal is that the drawbacks of both approaches can be redressed an
 
 Dyalog APL is the dialect of the language used by trap, so the first step is to [install Dyalog](https://www.dyalog.com/download-zone.htm). Dyalog is free for personal uses, but a license is obligatory for commercial purposes. To compile trap, Co-dfns v5 is required; an installation guide can be found [here](https://github.com/Co-dfns/Co-dfns/blob/master/docs/INSTALL.md).
 
-The ```TRANSFORMER``` namespace in [```transformer.apls```](https://github.com/BobMcDear/trap/blob/main/transformer.apls) exposes four main dfns:
+The ```TRANSFORMER``` namespace in [```APLSource/TRANSFORMER.apln```](https://github.com/BobMcDear/trap/blob/main/APLSource/TRANSFORMER.apln), which can be loaded via ```]Import # /path/to/APLSource```, exposes four main dfns:
 
 * ```TRANSFORMER.FWD```: Performs a forward pass over the input data when called monadically, calculating output logits. Otherwise, the left argument is interpreted as target classes, and the cross-entropy loss is returned. Activation tensors are kept track of for backpropagation.
 * ```TRANSFORMER.BWD```: Computes the gradients of the network's parameters. Technically, this is a non-niladic function, but its arguments are not used.
@@ -27,6 +27,7 @@ The ```TRANSFORMER``` namespace in [```transformer.apls```](https://github.com/B
 A concrete use case of ```TRANSFORMER``` can be seen below. This snippet trains a character-level transformer on the content of the file ```input.txt```, using the characters' decimal Unicode code points as inputs to the model, and autoregressively generates 32 characters given the initial sequence ```Th```. A sample input text file is included in this repository.
 
 ```apl
+]Import # /path/to/APLSource
 TRANSFORMER.TRAIN ⎕UCS ⊃⎕NGET 'input.txt'
 ⎕UCS 64 TRANSFORMER.GEN {(1,≢⍵)⍴⍵}⎕UCS 'Th'
 ```
