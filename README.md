@@ -1,3 +1,5 @@
+_For a kindred project implementing machine learning models in APL, see_ [APLearn](https://github.com/BobMcDear/aplearn).
+
 # trap
 
 • **[Introduction](#introduction)**<br>
