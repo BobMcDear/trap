@@ -1,4 +1,4 @@
-_For a kindred project implementing machine learning models in APL, see_ [APLearn](https://github.com/BobMcDear/aplearn).
+_For kindred APL projects, see_ [ada](https://github.com/BobMcDear/aplearn) _and_ [APLearn](https://github.com/BobMcDear/aplearn).
 
 # trap
 
