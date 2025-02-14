@@ -1,4 +1,4 @@
-_For kindred APL projects, see_ [ada](https://github.com/BobMcDear/aplearn) _and_ [APLearn](https://github.com/BobMcDear/aplearn).
+_For kindred APL projects, see_ [ada](https://github.com/BobMcDear/ada) _and_ [APLearn](https://github.com/BobMcDear/aplearn).
 
 # trap
 
