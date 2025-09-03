@@ -47,7 +47,7 @@ transformer.TRAIN ⎕UCS ⊃⎕NGET 'input.txt'
 ⎕UCS 64 transformer.GEN {(1,≢⍵)⍴⍵}⎕UCS 'Th'
 ```
 
-Because activations need to be carefully tracked for manual gradient descent, the code in ```TRANSFORMER``` might be intimidating at first, especially for array programming novices. A gentler and more concise alternative is [```APLSource/INF.apln```](https://github.com/BobMcDear/trap/blob/main/APLSource/TRANSFORMER.apln), which only supports inference and is thus much shorter. Being a subset of ```TRANSFORMER```, it provides merely two of the four chief dfns:
+Because activations need to be carefully tracked for manual gradient descent, the code in ```TRANSFORMER``` might be intimidating at first, especially for array programming novices. A gentler and more concise alternative is [```APLSource/INF.apln```](https://github.com/BobMcDear/trap/blob/main/APLSource/INF.apln), which only supports inference and is thus much shorter. Being a subset of ```TRANSFORMER```, it provides merely two of the four chief dfns:
 
 * ```INF.FWD```: Like `TRANSFORMER.FWD` but doesn't support loss calculation.
 * `INF.GEN`: Like `TRANSFORMER.GEN`, but the initial context and number of desired tokens need to be passed together as the right argument.
