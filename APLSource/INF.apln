@@ -1,0 +1,22 @@
+:Namespace INF
+
+MASK←-1E10×~(⍳32)∘.≥⍳32
+UNSQZ←{((⍴⍵),1)⍴⍵}
+AVG←{UNSQZ (+/⍵)÷¯1↑⍴⍵}
+
+FWD←{
+    s←⍺
+    LN←{(⍺⊃s.BLN)+⍤1⊢(⍺⊃s.WLN)×⍤1⊢diff÷⍤1⊢(1E¯5+AVG 2*⍨diff←⍵-⍤1⊢AVG ⍵)*0.5}
+    MHSA←{
+        q k v←((⍺⊃s.BQKV)+⍤3⊢⍵+.×⍺⊃s.WQKV)∘{0 2 1 3⍉⍵⌷⍤1⊢⍺}¨⍳3
+        attn←{e÷⍤1⊢UNSQZ+/e←*⍵-⍤1⊢UNSQZ⌈/⍵}MASK[⍳2⌷⍴q;⍳2⌷⍴k]+⍤2⊢(q+.×⍤2⊢⍉⍤2⊢k)÷(¯1↑⍴k)*0.5
+        (⍺⊃s.BO)+⍤1⊢((⍴⍵)⍴0 2 1 3⍉attn+.×⍤2⊢v)+.×⍺⊃s.WO
+    }
+    MLP←{(⍺⊃s.B2)+⍤1⊢({0.5×⍵×1+7○0.797885×⍵+0.044715×⍵*3}(⍺⊃s.B1)+⍤1⊢⍵+.×⍺⊃s.W1)+.×⍺⊃s.W2}
+    BLK←{ind inp←⍵ ⋄ (ind+1) ({⍵+ind MLP ⍵ LN⍨1+2×ind}inp+ind MHSA inp LN⍨2×ind)}
+    s.WH+.×⍨(2×≢s.W1)LN 1⊃BLK⍣(≢s.W1)⊢0 (s.WPE[⍳1⌷⍴⍵;]+⍤2⊢s.WTE[⍵;])
+}
+
+GEN←{inp cnt←⍵ ⋄ ⍺{⍵,(⊃⍒)⍤1⊢¯1↑[1]⍺ FWD (-(≢⍺.WPE)⌊1⌷⍴⍵)↑[1]⍵}⍣cnt⊢inp}
+
+:EndNamespace
